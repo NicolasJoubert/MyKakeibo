@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>MyKakeibo</title>
+</head>
+
+<body class="text-slate-800 h-screen overflow-hidden flex selection:bg-indigo-100 selection:text-indigo-700">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-slate-200 hidden md:flex flex-col z-20 shadow-sm">
+        <div class="p-6 flex items-center gap-3">
+            <div
+                class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-indigo-200 shadow-lg">
+                K
+            </div>
+            <span class="font-bold text-xl tracking-tight text-slate-900">MyKakeibo</span>
+        </div>
+
+        <nav class="flex-1 px-4 space-y-1 mt-4">
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 bg-indigo-50 text-indigo-700 rounded-xl font-medium transition-colors">
+                <span class="material-symbols-outlined">dashboard</span>
+                Tableau de bord
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+                <span class="material-symbols-outlined">receipt_long</span>
+                Transactions
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+                <span class="material-symbols-outlined">pie_chart</span>
+                Analyse
+            </a>
+            <a href="#"
+                class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-medium transition-colors">
+                <span class="material-symbols-outlined">savings</span>
+                Budgets
+                <span
+                    class="ml-auto text-xs bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-full">Nouveau</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-slate-100">
+            <div
+                class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-4 text-white shadow-lg relative overflow-hidden group cursor-pointer transition-transform hover:scale-[1.02]">
+                <div
+                    class="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white opacity-10 rounded-full blur-xl group-hover:scale-150 transition-transform">
+                </div>
+                <h4 class="font-semibold text-sm mb-1 z-10 relative">Passer Pro</h4>
+                <p class="text-xs text-indigo-100 mb-3 z-10 relative">Synchronisation bancaire automatique &amp; IA
+                    Advisor.</p>
+                <button
+                    class="w-full py-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg text-xs font-semibold transition-colors">Découvrir</button>
+            </div>
+        </div>
+
+        <div
+            class="p-4 flex items-center gap-3 border-t border-slate-100 hover:bg-slate-50 transition-colors cursor-pointer">
+            <!-- Using a generated avatar for the persona -->
+            <img style=""
+                src="blob:https://0usbyaywuhz2da53h6yc6wu10qxddmj7t79tucg8bz1ry51fra-h842232647.scf.usercontent.goog/4e77b5fd-8c8d-4ad7-91c6-83fb3cb24c71"
+                go-data-src="/gen?prompt=friendly+minimalist+avatar+illustration+of+a+young+professional+man+named+Nikodo+wearing+glasses&amp;aspect=1:1"
+                alt="Profil Nikōdo" class="w-10 h-10 rounded-full object-cover border border-slate-200">
+            <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-slate-900 truncate">Nikōdo</p>
+                <p class="text-xs text-slate-500 truncate">Développeur Solo</p>
+            </div>
+            <span class="material-symbols-outlined text-slate-400">settings</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <!-- Header -->
+        <header
+            class="h-16 bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-6 z-10 sticky top-0">
+            <div class="flex items-center gap-4">
+                <button class="md:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-lg">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <h1 class="text-lg font-semibold text-slate-800 hidden sm:block">Aperçu Financier</h1>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <!-- Month Selector -->
+                <div class="relative">
+                    <select id="monthSelector"
+                        class="appearance-none bg-slate-50 border border-slate-200 text-slate-700 py-2 pl-4 pr-10 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 hover:bg-white transition-colors cursor-pointer">
+                        <option value="Janvier">Janvier 2025</option>
+                        <option value="Fevrier">Février 2025</option>
+                        <option value="Mars">Mars 2025</option>
+                        <option value="Avril">Avril 2025</option>
+                        <option value="Mai">Mai 2025</option>
+                        <option value="Juin">Juin 2025</option>
+                        <option value="Juillet">Juillet 2025</option>
+                        <option value="Aout">Août 2025</option>
+                        <option value="Septembre">Septembre 2025</option>
+                        <option value="Octobre">Octobre 2025</option>
+                        <option value="Novembre">Novembre 2025</option>
+                        <option value="Decembre">Décembre 2025</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-500">
+                        <span class="material-symbols-outlined text-[1.2rem]">expand_more</span>
+                    </div>
+                </div>
+
+                <button
+                    class="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-lg shadow-slate-200 transition-all hover:translate-y-[-1px] active:translate-y-[0px]"
+                    onclick="openModal()">
+                    <span class="material-symbols-outlined text-[1.2rem]">add</span>
+                    <span class="hidden sm:inline">Transaction</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Scrollable Dashboard Content -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth" id="dashboardContent">
+            <div class="max-w-7xl mx-auto space-y-6 fade-in">
+
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Balance -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden group">
+                        <div class="absolute right-0 top-0 p-4 opacity-10">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-900 group-hover:scale-110 transition-transform duration-500">account_balance_wallet</span>
+                        </div>
+                        <p class="text-sm font-medium text-slate-500 mb-1">Solde du mois</p>
+                        <h3 class="text-3xl font-bold tracking-tight text-rose-600" id="balanceDisplay">-1 033,54 €</h3>
+                        <div class="mt-4 flex items-center gap-2 text-sm" id="balanceTrend"><span
+                                class="bg-rose-100 text-rose-700 px-2 py-0.5 rounded text-xs font-bold">Déficit</span><span
+                                class="text-slate-400">Attention aux dépenses</span></div>
+                    </div>
+
+                    <!-- Income -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden group">
+                        <div class="absolute right-0 top-0 p-4 opacity-10">
+                            <span
+                                class="material-symbols-outlined text-6xl text-emerald-600 group-hover:scale-110 transition-transform duration-500">trending_up</span>
+                        </div>
+                        <p class="text-sm font-medium text-slate-500 mb-1">Revenus</p>
+                        <h3 class="text-3xl font-bold text-emerald-600 tracking-tight" id="incomeDisplay">1 960,41 €
+                        </h3>
+                        <div class="mt-4 flex items-center gap-2 text-sm text-slate-400">
+                            <span
+                                class="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded text-xs font-semibold">Entrées</span>
+                            <span>Total encaissé</span>
+                        </div>
+                    </div>
+
+                    <!-- Expenses -->
+                    <div
+                        class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden group">
+                        <div class="absolute right-0 top-0 p-4 opacity-10">
+                            <span
+                                class="material-symbols-outlined text-6xl text-rose-600 group-hover:scale-110 transition-transform duration-500">trending_down</span>
+                        </div>
+                        <p class="text-sm font-medium text-slate-500 mb-1">Dépenses</p>
+                        <h3 class="text-3xl font-bold text-rose-600 tracking-tight" id="expenseDisplay">2 993,95 €</h3>
+                        <div class="mt-4 flex items-center gap-2 text-sm text-slate-400">
+                            <span
+                                class="bg-rose-50 text-rose-700 px-2 py-0.5 rounded text-xs font-semibold">Sorties</span>
+                            <span>Total décaissé</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Main Bar Chart -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 lg:col-span-2">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-semibold text-slate-800">Évolution Annuelle</h3>
+                            <div class="flex items-center gap-2 text-sm">
+                                <span class="flex items-center gap-1">
+                                    <div class="w-3 h-3 rounded-full bg-indigo-500"></div> Revenus
+                                </span>
+                                <span class="flex items-center gap-1">
+                                    <div class="w-3 h-3 rounded-full bg-slate-300"></div> Dépenses
+                                </span>
+                            </div>
+                        </div>
+                        <div class="h-64 w-full">
+                            <canvas id="mainChart"
+                                style="display: block; box-sizing: border-box; height: 256px; width: 507px;"
+                                width="1014" height="512"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Categories Pie Chart -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+                        <h3 class="font-semibold text-slate-800 mb-6">Répartition des Dépenses</h3>
+                        <div class="flex-1 flex items-center justify-center relative">
+                            <canvas id="categoryChart"
+                                style="display: block; box-sizing: border-box; height: 300px; width: 507px;"
+                                width="1014" height="600"></canvas>
+                            <!-- Centered Total Label in Doughnut -->
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <div class="text-center mt-2">
+                                    <span class="text-xs text-slate-400 block">Top Categ</span>
+                                    <span class="font-bold text-slate-800 text-lg" id="topCategoryName">Logement</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions Table -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                    <div class="p-6 border-b border-slate-50 flex items-center justify-between">
+                        <h3 class="font-semibold text-slate-800">Dernières Transactions</h3>
+                        <button class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">Voir tout</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider">
+                                    <th class="px-6 py-4 font-semibold">Date</th>
+                                    <th class="px-6 py-4 font-semibold">Catégorie</th>
+                                    <th class="px-6 py-4 font-semibold">Description</th>
+                                    <th class="px-6 py-4 font-semibold text-right">Montant</th>
+                                    <th class="px-6 py-4 font-semibold text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-sm text-slate-700" id="transactionsTableBody">
+                                <tr class="hover:bg-slate-50 transition-colors group cursor-pointer">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">29/08/2024</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-lg text-slate-400">payments</span>
+                                            <span class="font-medium text-slate-700">Revenus</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">BNP</td>
+                                    <td class="px-6 py-4 text-right font-bold text-emerald-600">+1 819,41 €</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-slate-300 hover:text-indigo-600 transition-colors"
+                                            title="Modifier">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors group cursor-pointer">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">05/01/2025</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-lg text-slate-400">home</span>
+                                            <span class="font-medium text-slate-700">Logement</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">Emprunt / Loyer</td>
+                                    <td class="px-6 py-4 text-right font-bold text-slate-900">-829,00 €</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-slate-300 hover:text-indigo-600 transition-colors"
+                                            title="Modifier">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors group cursor-pointer">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">08/01/2025</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-lg text-slate-400">shopping_cart</span>
+                                            <span class="font-medium text-slate-700">Alimentaire</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">Courses Hebdo</td>
+                                    <td class="px-6 py-4 text-right font-bold text-slate-900">-471,67 €</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-slate-300 hover:text-indigo-600 transition-colors"
+                                            title="Modifier">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors group cursor-pointer">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">15/01/2025</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-lg text-slate-400">train</span>
+                                            <span class="font-medium text-slate-700">Transport</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">SNCF</td>
+                                    <td class="px-6 py-4 text-right font-bold text-slate-900">-188,00 €</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-slate-300 hover:text-indigo-600 transition-colors"
+                                            title="Modifier">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors group cursor-pointer">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">20/01/2025</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-lg text-slate-400">restaurant</span>
+                                            <span class="font-medium text-slate-700">Loisirs</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">Restaurant</td>
+                                    <td class="px-6 py-4 text-right font-bold text-slate-900">-143,15 €</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-slate-300 hover:text-indigo-600 transition-colors"
+                                            title="Modifier">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors group cursor-pointer">
+                                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">25/01/2025</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-lg text-slate-400">receipt</span>
+                                            <span class="font-medium text-slate-700">Maison</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-slate-600">Dépenses maisons</td>
+                                    <td class="px-6 py-4 text-right font-bold text-slate-900">-360,01 €</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button class="text-slate-300 hover:text-indigo-600 transition-colors"
+                                            title="Modifier">
+                                            <span class="material-symbols-outlined text-lg">edit</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Illustration / Motivation Section (Visual Break) -->
+                <div
+                    class="bg-indigo-900 rounded-2xl p-8 relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
+                    <!-- Contextual Image: Savings Goal -->
+                    <img src="blob:https://0usbyaywuhz2da53h6yc6wu10qxddmj7t79tucg8bz1ry51fra-h842232647.scf.usercontent.goog/0f392337-9aba-4271-aa04-92b60547dd9b"
+                        go-data-src="/gen?prompt=flat+illustration+of+a+piggy+bank+on+top+of+a+mountain+with+a+flag,+vector+art+style,+dark+blue+background&amp;aspect=4:3"
+                        alt="Savings Goal"
+                        class="w-full md:w-1/3 rounded-xl shadow-2xl border-4 border-white/10 z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500"
+                        style="">
+
+                    <div class="flex-1 text-center md:text-left z-10">
+                        <h2 class="text-2xl font-bold text-white mb-2">Objectif Épargne 2025</h2>
+                        <p class="text-indigo-200 mb-6 max-w-lg">
+                            Vous avez économisé <span class="text-white font-bold" id="savedAmount">0.00 €</span> ce
+                            mois-ci. Continuez comme ça pour financer vos projets !
+                        </p>
+                        <div class="w-full bg-indigo-950 rounded-full h-2 mb-2 overflow-hidden">
+                            <div class="bg-gradient-to-r from-emerald-400 to-teal-400 h-2 rounded-full"
+                                style="width: 65%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-indigo-300">
+                            <span>0€</span>
+                            <span>Objectif: 500€ / mois</span>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Circle -->
+                    <div
+                        class="absolute -top-24 -right-24 w-64 h-64 bg-indigo-800 rounded-full blur-3xl opacity-50 pointer-events-none">
+                    </div>
+                </div>
+
+                <div class="h-10"></div> <!-- Bottom Spacer -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Transaction Modal -->
+    <div id="transactionModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop">
+        </div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <!-- Modal Panel -->
+                <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg opacity-0 scale-95"
+                    id="modalPanel">
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="flex items-start justify-between">
+                            <h3 class="text-xl font-semibold leading-6 text-slate-900" id="modal-title">Nouvelle
+                                Transaction</h3>
+                            <button onclick="closeModal()"
+                                class="text-slate-400 hover:text-slate-600 transition-colors">
+                                <span class="material-symbols-outlined">close</span>
+                            </button>
+                        </div>
+                        <div class="mt-6 space-y-4">
+                            <div>
+                                <label for="amount"
+                                    class="block text-sm font-medium leading-6 text-slate-900">Montant</label>
+                                <div class="relative mt-2 rounded-md shadow-sm">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <span class="text-slate-500 sm:text-sm">€</span>
+                                    </div>
+                                    <input type="number" name="amount" id="amount"
+                                        class="block w-full rounded-md border-0 py-2.5 pl-7 pr-12 text-slate-900 ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="0.00" step="0.01">
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                        <span class="text-slate-500 sm:text-sm">EUR</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="category"
+                                    class="block text-sm font-medium leading-6 text-slate-900">Catégorie</label>
+                                <select id="category" name="category"
+                                    class="mt-2 block w-full rounded-md border-0 py-2.5 pl-3 pr-10 text-slate-900 ring-1 ring-inset ring-slate-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <option>Alimentaire / Courses</option>
+                                    <option>Logement</option>
+                                    <option>Transport</option>
+                                    <option>Sorties / Loisirs</option>
+                                    <option>Santé</option>
+                                    <option>Revenus</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="date"
+                                    class="block text-sm font-medium leading-6 text-slate-900">Date</label>
+                                <input type="date" name="date" id="date"
+                                    class="mt-2 block w-full rounded-md border-0 py-2.5 text-slate-900 ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            </div>
+
+                            <div>
+                                <label for="description"
+                                    class="block text-sm font-medium leading-6 text-slate-900">Description</label>
+                                <input type="text" name="description" id="description"
+                                    class="mt-2 block w-full rounded-md border-0 py-2.5 text-slate-900 ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    placeholder="Ex: Courses Carrefour">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button type="button"
+                            class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto transition-colors"
+                            onclick="addTransaction()">Ajouter</button>
+                        <button type="button"
+                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50 sm:mt-0 sm:w-auto transition-colors"
+                            onclick="closeModal()">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA LAYER ---
+        // Simulating the backend/database from the provided CSV files
+        const db = {
+            "Janvier": {
+                revenus: 1960.41,
+                depenses: 2993.95,
+                transactions: [
+                    { date: "29/08/2024", cat: "Revenus", desc: "BNP", amount: 1819.41, type: "in" },
+                    { date: "05/01/2025", cat: "Logement", desc: "Emprunt / Loyer", amount: 829.00, type: "out" },
+                    { date: "08/01/2025", cat: "Alimentaire", desc: "Courses Hebdo", amount: 471.67, type: "out" },
+                    { date: "15/01/2025", cat: "Transport", desc: "SNCF", amount: 188.00, type: "out" },
+                    { date: "20/01/2025", cat: "Loisirs", desc: "Restaurant", amount: 143.15, type: "out" },
+                    { date: "25/01/2025", cat: "Maison", desc: "Dépenses maisons", amount: 360.01, type: "out" }
+                ],
+                breakdown: { "Logement": 894.5, "Alimentaire": 587.12, "Loisirs": 175.65, "Maison": 472.5, "Transport": 200.5 }
+            },
+            "Fevrier": {
+                revenus: 2068.16,
+                depenses: 2317.90,
+                transactions: [
+                    { date: "02/02/2025", cat: "Revenus", desc: "BNP Salaire", amount: 1811.16, type: "in" },
+                    { date: "05/02/2025", cat: "Alimentaire", desc: "Courses", amount: 398.92, type: "out" },
+                    { date: "10/02/2025", cat: "Animaux", desc: "Véto / Nourriture", amount: 134.73, type: "out" },
+                    { date: "14/02/2025", cat: "Loisirs", desc: "Restaurant St Val", amount: 197.29, type: "out" },
+                    { date: "20/02/2025", cat: "Maison", desc: "Cadeau", amount: 339.59, type: "out" },
+                    { date: "25/02/2025", cat: "Loisirs", desc: "Festival", amount: 61.05, type: "out" }
+                ],
+                breakdown: { "Maison": 603.92, "Alimentaire": 567.19, "Loisirs": 287.79, "Transport": 180.92, "Logement": 140.82 }
+            },
+            "Mars": {
+                revenus: 85659.20,
+                depenses: 3549.15,
+                transactions: [
+                    { date: "01/03/2025", cat: "Revenus", desc: "Vente exceptionnelle", amount: 84964.20, type: "in" },
+                    { date: "05/03/2025", cat: "Melina", desc: "Permis de conduire", amount: 550.00, type: "out" },
+                    { date: "10/03/2025", cat: "Alimentaire", desc: "Courses", amount: 545.69, type: "out" },
+                    { date: "15/03/2025", cat: "Vetements", desc: "Shopping Printemps", amount: 341.65, type: "out" },
+                    { date: "22/03/2025", cat: "Loisirs", desc: "Bar / Sorties", amount: 214.90, type: "out" }
+                ],
+                breakdown: { "Melina": 701.49, "Alimentaire": 693.66, "Loisirs": 525.99, "Maison": 412.76, "Vetements": 341.65 }
+            },
+            "Avril": {
+                revenus: 179.46,
+                depenses: 2663.56,
+                transactions: [
+                    { date: "02/04/2025", cat: "Revenus", desc: "Remboursement", amount: 68.00, type: "in" },
+                    { date: "10/04/2025", cat: "Alimentaire", desc: "Courses Avril", amount: 519.45, type: "out" },
+                    { date: "12/04/2025", cat: "Transport", desc: "SNCF Vacances", amount: 364.90, type: "out" },
+                    { date: "18/04/2025", cat: "Maison", desc: "Dépenses Maison", amount: 404.00, type: "out" },
+                    { date: "24/04/2025", cat: "Loisirs", desc: "Restaurant", amount: 313.65, type: "out" }
+                ],
+                breakdown: { "Alimentaire": 620.16, "Maison": 556.3, "Loisirs": 546.48, "Transport": 430.15, "Logement": 175.28 }
+            },
+            // Adding a few more for the chart logic, simplified
+            "Mai": { revenus: 1507.63, depenses: 1806.45, breakdown: { "Loisirs": 553, "Alimentaire": 25, "Melina": 213, "Maison": 169 }, transactions: [] },
+            "Juin": { revenus: 113.58, depenses: 1816.45, breakdown: { "Loisirs": 472, "Sante": 400, "Maison": 230 }, transactions: [] },
+            "Juillet": { revenus: 324.43, depenses: 1735.82, breakdown: { "Alimentaire": 461, "Loisirs": 283, "Sante": 217 }, transactions: [] },
+            "Aout": { revenus: 444.69, depenses: 2029.66, breakdown: { "Transport": 767, "Loisirs": 468, "Melina": 174 }, transactions: [] },
+            "Septembre": { revenus: 1446.00, depenses: 1840.05, breakdown: { "Transport": 437, "Maison": 306, "Sante": 275 }, transactions: [] },
+            "Octobre": { revenus: 1532.00, depenses: 1648.87, breakdown: { "Alimentaire": 382, "Loisirs": 368, "Transport": 251 }, transactions: [] },
+            "Novembre": { revenus: 1402.00, depenses: 2108.50, breakdown: { "Alimentaire": 551, "Vetements": 541, "Loisirs": 245 }, transactions: [] },
+            "Decembre": { revenus: 1333.80, depenses: 1507.35, breakdown: { "Melina": 658, "Transport": 264, "Alimentaire": 200 }, transactions: [] }
+        };
+
+        const monthOrder = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
+
+        // --- CHART INSTANCES ---
+        let mainChartInstance = null;
+        let categoryChartInstance = null;
+
+        // --- DOM ELEMENTS ---
+        const els = {
+            monthSelector: document.getElementById('monthSelector'),
+            balance: document.getElementById('balanceDisplay'),
+            income: document.getElementById('incomeDisplay'),
+            expense: document.getElementById('expenseDisplay'),
+            trend: document.getElementById('balanceTrend'),
+            tableBody: document.getElementById('transactionsTableBody'),
+            savedAmount: document.getElementById('savedAmount'),
+            topCatName: document.getElementById('topCategoryName'),
+            // Modal
+            modal: document.getElementById('transactionModal'),
+            modalBackdrop: document.getElementById('modalBackdrop'),
+            modalPanel: document.getElementById('modalPanel')
+        };
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            updateDashboard("Janvier"); // Default
+
+            els.monthSelector.addEventListener('change', (e) => {
+                updateDashboard(e.target.value);
+            });
+        });
+
+        // --- CORE FUNCTIONS ---
+
+        function updateDashboard(month) {
+            const data = db[month];
+            if (!data) return;
+
+            // 1. Update KPI Cards
+            const balance = data.revenus - data.depenses;
+            animateValue(els.balance, balance, " €");
+            animateValue(els.income, data.revenus, " €");
+            animateValue(els.expense, data.depenses, " €");
+
+            // Style balance
+            if (balance >= 0) {
+                els.balance.classList.remove('text-rose-600');
+                els.balance.classList.add('text-slate-900');
+                els.trend.innerHTML = `<span class="bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded text-xs font-bold">+${((balance / data.revenus) * 100).toFixed(1)}%</span><span class="text-slate-400">du revenu épargné</span>`;
+                els.savedAmount.innerText = balance.toFixed(2) + " €";
+            } else {
+                els.balance.classList.remove('text-slate-900');
+                els.balance.classList.add('text-rose-600');
+                els.trend.innerHTML = `<span class="bg-rose-100 text-rose-700 px-2 py-0.5 rounded text-xs font-bold">Déficit</span><span class="text-slate-400">Attention aux dépenses</span>`;
+                els.savedAmount.innerText = "0.00 €";
+            }
+
+            // 2. Update Transactions Table
+            renderTransactions(data.transactions);
+
+            // 3. Update Charts
+            updateCharts(month, data);
+        }
+
+        function renderTransactions(transactions) {
+            els.tableBody.innerHTML = '';
+            if (!transactions || transactions.length === 0) {
+                els.tableBody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-slate-400 italic">Aucune transaction récente simulée pour ce mois (voir CSV complet)</td></tr>';
+                return;
+            }
+
+            transactions.forEach(t => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors group cursor-pointer";
+                const amountClass = t.type === 'in' ? 'text-emerald-600' : 'text-slate-900';
+                const sign = t.type === 'in' ? '+' : '-';
+
+                // Icon logic based on category
+                let icon = 'receipt';
+                if (t.cat.includes('Logement')) icon = 'home';
+                if (t.cat.includes('Alimentaire') || t.cat.includes('Courses')) icon = 'shopping_cart';
+                if (t.cat.includes('Transport') || t.cat.includes('SNCF')) icon = 'train';
+                if (t.cat.includes('Revenus')) icon = 'payments';
+                if (t.cat.includes('Loisirs') || t.cat.includes('Restau')) icon = 'restaurant';
+                if (t.cat.includes('Animaux')) icon = 'pets';
+                if (t.cat.includes('Vetements')) icon = 'apparel';
+
+                tr.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">${t.date}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg text-slate-400">${icon}</span>
+                            <span class="font-medium text-slate-700">${t.cat}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-slate-600">${t.desc}</td>
+                    <td class="px-6 py-4 text-right font-bold ${amountClass}">${sign}${formatCurrency(t.amount)}</td>
+                    <td class="px-6 py-4 text-center">
+                        <button class="text-slate-300 hover:text-indigo-600 transition-colors" title="Modifier">
+                            <span class="material-symbols-outlined text-lg">edit</span>
+                        </button>
+                    </td>
+                `;
+                els.tableBody.appendChild(tr);
+            });
+        }
+
+        function initCharts() {
+            // Main Bar Chart (Year Overview)
+            const ctxMain = document.getElementById('mainChart').getContext('2d');
+
+            // Prepare Data for all months
+            const labels = monthOrder.map(m => m.substring(0, 3));
+            const incomeData = monthOrder.map(m => db[m].revenus);
+            const expenseData = monthOrder.map(m => db[m].depenses);
+
+            mainChartInstance = new Chart(ctxMain, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Revenus',
+                            data: incomeData,
+                            backgroundColor: '#6366f1', // Indigo 500
+                            borderRadius: 4,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.8
+                        },
+                        {
+                            label: 'Dépenses',
+                            data: expenseData,
+                            backgroundColor: '#cbd5e1', // Slate 300
+                            borderRadius: 4,
+                            barPercentage: 0.6,
+                            categoryPercentage: 0.8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function (context) {
+                                    return context.dataset.label + ': ' + context.raw.toFixed(2) + ' €';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f5f9', borderDash: [4, 4] },
+                            ticks: { callback: (val) => val >= 1000 ? (val / 1000) + 'k' : val }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Category Doughnut Chart
+            const ctxCat = document.getElementById('categoryChart').getContext('2d');
+            categoryChartInstance = new Chart(ctxCat, {
+                type: 'doughnut',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: [
+                            '#6366f1', '#ec4899', '#10b981', '#f59e0b', '#8b5cf6', '#64748b'
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '75%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateCharts(month, data) {
+            // Update Pie Chart based on breakdown
+            const bd = data.breakdown || {};
+            const labels = Object.keys(bd);
+            const values = Object.values(bd);
+
+            // Sort to find top category
+            if (labels.length > 0) {
+                const maxVal = Math.max(...values);
+                const maxIndex = values.indexOf(maxVal);
+                els.topCatName.innerText = labels[maxIndex];
+            } else {
+                els.topCatName.innerText = "-";
+            }
+
+            categoryChartInstance.data.labels = labels;
+            categoryChartInstance.data.datasets[0].data = values;
+            categoryChartInstance.update();
+        }
+
+        // --- UTILS & UI LOGIC ---
+
+        function formatCurrency(val) {
+            return new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(val) + ' €';
+        }
+
+        function animateValue(obj, end, suffix) {
+            // Simple animation
+            let startTimestamp = null;
+            const duration = 500;
+            const start = 0; // Or current value if parsing needed, simpler to 0 for demo
+
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                // Easing
+                const ease = 1 - Math.pow(1 - progress, 3);
+
+                const current = start + (end - start) * ease;
+                obj.innerHTML = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(current) + suffix;
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // --- MODAL LOGIC ---
+        function openModal() {
+            els.modal.classList.remove('hidden');
+            // Allow browser paint
+            setTimeout(() => {
+                els.modalBackdrop.classList.remove('opacity-0');
+                els.modalPanel.classList.remove('opacity-0', 'scale-95');
+                els.modalPanel.classList.add('opacity-100', 'scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            els.modalBackdrop.classList.add('opacity-0');
+            els.modalPanel.classList.remove('opacity-100', 'scale-100');
+            els.modalPanel.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                els.modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function addTransaction() {
+            // In a real app, this would POST to Remix backend
+            // For MVP mockup, we just update the UI
+            const amount = parseFloat(document.getElementById('amount').value);
+            const desc = document.getElementById('description').value || "Nouvelle dépense";
+            const cat = document.getElementById('category').value;
+            const dateInput = document.getElementById('date').value; // YYYY-MM-DD
+
+            if (!amount) return;
+
+            // Simple notification simulation
+            const btn = document.querySelector('#modalPanel button.bg-indigo-600');
+            const originalText = btn.innerText;
+            btn.innerText = "Ajouté !";
+            btn.classList.replace('bg-indigo-600', 'bg-emerald-600');
+
+            setTimeout(() => {
+                closeModal();
+                // Reset button state
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.replace('bg-emerald-600', 'bg-indigo-600');
+                }, 300);
+
+                // Add to current month view (visual only)
+                const tr = document.createElement('tr');
+                tr.className = "bg-yellow-50 fade-in"; // Highlight new
+                tr.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-slate-500">${dateInput || 'Aujourd\'hui'}</td>
+                    <td class="px-6 py-4 whitespace-nowrap"><span class="font-medium text-slate-700">${cat}</span></td>
+                    <td class="px-6 py-4 text-slate-600">${desc}</td>
+                    <td class="px-6 py-4 text-right font-bold text-slate-900">-${formatCurrency(amount)}</td>
+                    <td class="px-6 py-4 text-center">...</td>
+                `;
+                els.tableBody.insertBefore(tr, els.tableBody.firstChild);
+
+                // Update Balance visually
+                const currentBal = parseFloat(els.balance.innerText.replace(/[^\d,-]/g, '').replace(',', '.'));
+                const newBal = currentBal - amount;
+                els.balance.innerText = formatCurrency(newBal);
+
+            }, 500);
+        }
+    </script>
+
+
+</body>
+
+</html>
